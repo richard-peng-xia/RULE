@@ -1,6 +1,6 @@
 training/wandb
 data/annotations/*
-!data/annotations/
+!data/annotations/.gitkeep
 checkpoints/*
-!checkpoints/
+!checkpoints/.gitkeep
 *.log
