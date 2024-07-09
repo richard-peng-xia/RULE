@@ -1,3 +1,6 @@
-./training/wandb
-./data/annotations/*
-./checkpoints/*
+training/wandb
+data/annotations/*
+!data/annotations/
+checkpoints/*
+!checkpoints/
+*.log
