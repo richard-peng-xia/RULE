@@ -1,0 +1,3 @@
+./training/wandb
+./data/annotations/*
+./checkpoints/*
