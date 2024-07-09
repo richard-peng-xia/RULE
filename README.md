@@ -12,3 +12,17 @@
 
 + [ ] Release the VQA data.
 + [ ] Release the training code.
+
+## Citation
+
+```bibtex
+@article{xia2024rule,
+  title={RULE: Reliable Multimodal RAG for Factuality in Medical Vision Language Models},
+  author={Xia, Peng and Zhu, Kangyu and Li, Haoran and Zhu, Hongtu and Li, Yun and Li, Gang and Zhang, Linjun and Yao, Huaxiu},
+  journal={arXiv preprint arXiv:2407.05131},
+  year={2024}
+}
+```
+
+## Acknowledgement
+We use code from [LLaVA-Med](https://github.com/microsoft/LLaVA-Med), [POVID](https://github.com/YiyangZhou/POVID), [CARES](https://github.com/richard-peng-xia/CARES). We thank the authors for releasing their code.
