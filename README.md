@@ -16,8 +16,9 @@
 ## Installation
 
 
-## Data Generation
-
+## Preparation
+Download the data annotations from https://huggingface.co/datasets/zky11235/annotations/tree/main
+Download the model checkpoints after dpo training from https://huggingface.co/zky11235/dpo_checkpoints
 ## Training
 
 
