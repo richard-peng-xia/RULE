@@ -13,17 +13,17 @@
 + [ ] Release the VQA data.
 + [ ] Release the training code.
 
-## Installation
+<!-- ## Installation -->
 
 
 ## Preparation
 Download the data annotations from https://huggingface.co/datasets/zky11235/annotations
 
 Download the model checkpoints after dpo training from https://huggingface.co/zky11235/dpo_checkpoints
-## Training
+<!-- ## Training -->
 
 
-## Inference
+<!-- ## Inference -->
 
 
 ## Citation
