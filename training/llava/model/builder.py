@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, BitsAndBytesConfig
 import torch
-# from llava.model import LlavaMistralForCausalLM
-from llava.model import *
+from llava.model import LlavaMistralForCausalLM
+# from llava.model import *
 from llava.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 import os
 
@@ -35,10 +35,10 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
                     use_flash_attention_2=False,
                     **kwargs
                 )
-    if 'lora' in model_name.lower() and model_base is not None:
+    elif 'lora' in model_name.lower() and model_base is not None:
             # from llava.model.language_model.llava_llama import LlavaConfig
             from llava.model.language_model.llava_mistral import LlavaMistralConfig
-            lora_cfg_pretrained = LlavaConfig.from_pretrained(model_path)
+            lora_cfg_pretrained = LlavaMistralConfig.from_pretrained(model_path)
             tokenizer = AutoTokenizer.from_pretrained(model_base, use_fast=False)
             print('Loading LLaVA from base model...')
             model = LlavaMistralForCausalLM.from_pretrained(model_base, low_cpu_mem_usage=True, config=lora_cfg_pretrained, **kwargs)
@@ -111,8 +111,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         model.model.mm_projector.to(device=device, dtype=torch.float16)
         model.to(device=device, dtype=torch.float16)
         image_processor = vision_tower.image_processor
-    
-    if 'mistral' in model_base.lower():
+    elif 'mistral' in model_base.lower():# or 'mistral' in model_name.lower():
         mm_use_im_start_end = getattr(model.config, "mm_use_im_start_end", False)
         mm_use_im_patch_token = getattr(model.config, "mm_use_im_patch_token", True)
         if mm_use_im_patch_token:

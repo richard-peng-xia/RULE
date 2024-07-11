@@ -9,7 +9,7 @@ from transformers.trainer import (
     get_parameter_names,
     has_length,
     ALL_LAYERNORM_LAYERS,
-    ShardedDDPOption,
+    # ShardedDDPOption,
     logger,
 )
 from typing import List, Optional
@@ -156,8 +156,8 @@ class LLaVATrainer(DPOTrainer):
         """
         if is_sagemaker_mp_enabled():
             return super().create_optimizer()
-        if self.sharded_ddp == ShardedDDPOption.SIMPLE:
-            return super().create_optimizer()
+        # if self.sharded_ddp == ShardedDDPOption.SIMPLE:
+        #     return super().create_optimizer()
 
         opt_model = self.model
 
@@ -212,7 +212,17 @@ class LLaVATrainer(DPOTrainer):
 
             optimizer_cls, optimizer_kwargs = DPOTrainer.get_optimizer_cls_and_kwargs(self.args)
 
-            if self.sharded_ddp == ShardedDDPOption.SIMPLE:
+            # if self.sharded_ddp == ShardedDDPOption.SIMPLE:
+            #     self.optimizer = OSS(
+            #         params=optimizer_grouped_parameters,
+            #         optim=optimizer_cls,
+            #         **optimizer_kwargs,
+            #     )
+            if False:
+                # self.optimizer = self.sharded_ddp.wrap_optimizer(optimizer_cls(
+                #     optimizer_grouped_parameters, **optimizer_kwargs
+                # ))
+                # print('Using DPOTrainer')
                 self.optimizer = OSS(
                     params=optimizer_grouped_parameters,
                     optim=optimizer_cls,
