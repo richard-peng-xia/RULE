@@ -1,9 +1,10 @@
-training/wandb
+wandb
 data/annotations/*
 !data/annotations/.gitkeep
 checkpoints/*
 !checkpoints/.gitkeep
 *.log
-training/pyproject.toml
+# training/pyproject.toml
 training/README.md
-training/llava.egg-info
+llava.egg-info
+requirements.txt
