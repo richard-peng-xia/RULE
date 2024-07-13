@@ -8,3 +8,4 @@ checkpoints/*
 training/README.md
 llava.egg-info
 requirements.txt
+inference

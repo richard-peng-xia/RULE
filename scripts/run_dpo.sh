@@ -1,4 +1,4 @@
-cd ../training
+# cd ../training
 image_folder="/home/wenhao/Datasets/med/Harvard/Validation"
 
 data_path="../data/annotations/dpo/harvard_dpo_data_qrefVqa.json"
