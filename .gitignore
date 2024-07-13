@@ -4,3 +4,6 @@ data/annotations/*
 checkpoints/*
 !checkpoints/.gitkeep
 *.log
+training/pyproject.toml
+training/README.md
+training/llava.egg-info
