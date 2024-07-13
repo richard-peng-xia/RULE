@@ -33,9 +33,9 @@ pip install trl
 ## Preparation
 Download the model [llava-med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
 
-Download the [data annotations](https://huggingface.co/datasets/zky11235/annotations).
+Download the [data annotations](https://huggingface.co/datasets/zky11235/annotations).Put the folder under data/annotations.
 
-Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after dpo training.
+Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after dpo training. Put the folder under checkpoints.
 <!-- ## Training -->
 
 
