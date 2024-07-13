@@ -13,13 +13,29 @@
 + [ ] Release the VQA data.
 + [ ] Release the training code.
 
-<!-- ## Installation -->
+## Install
+1. Clone this repository and navigate to RULE folder
+```bash
+https://github.com/richard-peng-xia/RULE.git
+cd RULE
+```
 
+2. Install Package: Create conda environment
+
+```Shell
+conda create -n RULE python=3.10 -y
+conda activate RULE
+pip install --upgrade pip  # enable PEP 660 support
+pip install -e .
+pip install trl
+```
 
 ## Preparation
-Download the data annotations from https://huggingface.co/datasets/zky11235/annotations
+Download the model [llava-med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
 
-Download the model checkpoints after dpo training from https://huggingface.co/zky11235/dpo_checkpoints
+Download the [data annotations](https://huggingface.co/datasets/zky11235/annotations).
+
+Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after dpo training.
 <!-- ## Training -->
 
 
