@@ -18,7 +18,7 @@ from transformers import set_seed, logging
 logging.set_verbosity_error()
 import debugpy
 # rank = int(os.getenv('RANK', '0'))
-# port = 5678 + rank  # 基础端口 + 进程ID
+# port = 5678 + rank  
 
 # debugpy.listen(port)
 # print(f"Process {rank} waiting for debugger to attach on port {port}...")
@@ -71,20 +71,9 @@ def eval_model(args):
                 topk=1
                 reference_report=[reference_report]
                 # formatted_reference_report=reference_report[0]
-                cleaned_report = reference_report[0].replace('\n', ' ')
-
-                # # 去除"Impression:"部分
-                # cleaned_report = re.sub(r'[Ii]mpression:.*?(?=(Findings:|findings:|$))', '', cleaned_report, flags=re.DOTALL)
-
-                # # 去除"Findings:"部分
-                # cleaned_report = re.sub(r'\b[Ff]indings:\s*', '', cleaned_report)
-
-                # 将其余文本连接起来
+                cleaned_report = reference_report[0].replace('\n', ' ')                
                 cleaned_report = ' '.join(cleaned_report.split())
 
-                # 只保留前三句
-                # sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', cleaned_report)
-                # cleaned_report = ' '.join(sentences[:2])
 
                 formatted_reference_report = f"{cleaned_report} "
             else:
@@ -93,38 +82,15 @@ def eval_model(args):
                 for i in range(topk):
                     # formatted_reference_report += f"{i + 1}. {reference_report[i]} "
                     cleaned_report = reference_report[i].replace('\n', ' ')
-                    # cleaned_report = reference_report[i].replace('___', 'xxx')
-                    
-                    # cleaned_report = re.sub(r'\b[Ii]mpression:\s*', '', cleaned_report)
-                    # cleaned_report = re.sub(r'\b[Ff]indings:\s*', '', cleaned_report)
-
-
-                    # cleaned_report = re.sub(r'[Ii]mpression:.*?(?=(Findings:|findings:|$))', '', cleaned_report, flags=re.DOTALL)
-
-                    # # 使用正则表达式去除"Findings:"或"findings:"标记
-                    # cleaned_report = re.sub(r'\b[Ff]indings:\s*', '', cleaned_report)
-
-                    # 将其余文本连接起来
                     cleaned_report = ' '.join(cleaned_report.split())
 
                     formatted_reference_report += f"{i + 1}. {cleaned_report} "
 
 
-                # print(formatted_reference_report)
-            # cur_prompt = qs
-            # suffix='Please answer the question based on the image and report and choose from the following two options: [yes, no]. Please directly answer starting with "Yes" or "No". The answer should be limited to two sentences.'
-
-            # appendix_1=f"You are provided with a chest X-ray image, a image-related question and {topk} reference report(s): "
-            # appendix_2="It should be noted that the diagnostic information in the reference reports cannot be directly used as the basis for diagnosis, but should only be used for reference and comparison. Question: "
-            # cur_prompt = appendix_1 + formatted_reference_report +"\n"+ appendix_2 +"\n"+qs
-
             appendix_1=f"You are provided with a chest X-ray image, a image-related question: \n"
             appendix_2=f"You are also provided with {topk} reference report(s).Please answer the question based on the image and report and answer the question based on the image and report and choose from the following two options: [yes, no]. It should be noted that the diagnostic information in the reference reports cannot be directly used as the basis for diagnosis, but should only be used for reference. \nReference reports:"
             cur_prompt = appendix_1 +qs+ "\n"+appendix_2 +"\n"+formatted_reference_report
-            # If the reference reports are too long and get cut off, do not refill the remaining sentence; directly answer the question.
-
-            # Please directly answer starting with 'Yes' or 'No'. The answer should be limited to one sentence.
-            # print(cur_prompt)
+            
             qs=cur_prompt
         # cur_prompt = qs
         if model.config.mm_use_im_start_end:
@@ -140,11 +106,11 @@ def eval_model(args):
         input_ids = tokenizer_image_token(prompt, tokenizer, IMAGE_TOKEN_INDEX, return_tensors='pt').unsqueeze(0).cuda()
 
 
-        # 检查 input_ids 的长度
+        
         # input_length = input_ids.shape[1]
         # print(f"Input length: {input_length}")
 
-        # # 获取模型的最大输入长度
+        
         # max_input_length = model.config.max_position_embeddings
         # print(f"Max input length: {max_input_length}")
 
@@ -170,28 +136,7 @@ def eval_model(args):
                 # no_repeat_ngram_size=3,
                 max_new_tokens=1024,
                 use_cache=True)
-            # output = model.generate(
-            #     input_ids,
-            #     images=image_tensor.unsqueeze(0).half().cuda(),
-            #     do_sample=True if args.temperature > 0 else False,
-            #     temperature=args.temperature,
-            #     top_p=args.top_p,
-            #     num_beams=args.num_beams,
-            #     max_new_tokens=1024,
-            #     use_cache=True,
-            #     output_scores=True,
-            #     return_dict_in_generate=True)
-
-        # output_ids = output.sequences
-        # scores = output.scores
-
-        # # 计算每个token的概率
-        # probabilities = []
-        # for i, score in enumerate(scores):
-        #     softmax_scores = torch.nn.functional.softmax(score, dim=-1)
-        #     probabilities.append(softmax_scores)
-
-        # 输出的token序列
+        
         outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 
         

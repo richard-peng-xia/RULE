@@ -1,5 +1,5 @@
 wandb
-data/annotations/*
+data/*
 !data/annotations/.gitkeep
 checkpoints/*
 !checkpoints/.gitkeep

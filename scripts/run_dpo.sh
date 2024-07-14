@@ -1,11 +1,12 @@
 # cd ../training
+
 image_folder="/home/wenhao/Datasets/med/Harvard/Validation"
 
-data_path="../data/annotations/dpo/harvard_dpo_data_qrefVqa.json"
-output_path='../checkpoints/output/harvard/harvard_lora-qrefVqa'
+data_path="data/annotations/dpo/harvard_dpo_data_qrefVqa.json"
+output_path='checkpoints/output/harvard_lora-qrefVqa'
 
 
-deepspeed --include localhost:0,1,2,3 llava/train/train_dpo.py \
+CUDA_VISIBLE_DEVICES='2,3' deepspeed --include localhost:0,1 llava/train/train_dpo.py \
     --model_name_or_path /home/wenhao/Project/intern/xiapeng/rein/LLaVA-Med/checkpoint/llava-med-v1.5-mistral-7b  \
     --deepspeed ./scripts/zero3.json \
     --version v1 \

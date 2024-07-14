@@ -19,7 +19,7 @@ from transformers import set_seed, logging
 logging.set_verbosity_error()
 import debugpy
 # rank = int(os.getenv('RANK', '0'))
-# port = 5678 + rank  # 基础端口 + 进程ID
+# port = 5678 + rank  
 
 # debugpy.listen(port)
 # print(f"Process {rank} waiting for debugger to attach on port {port}...")
@@ -115,31 +115,8 @@ def eval_model(args):
                 # no_repeat_ngram_size=3,
                 max_new_tokens=1024,
                 use_cache=True)
-            # output = model.generate(
-            #     input_ids,
-            #     images=image_tensor.unsqueeze(0).half().cuda(),
-            #     do_sample=True if args.temperature > 0 else False,
-            #     temperature=args.temperature,
-            #     top_p=args.top_p,
-            #     num_beams=args.num_beams,
-            #     max_new_tokens=1024,
-            #     use_cache=True,
-            #     output_scores=True,
-            #     return_dict_in_generate=True)
 
-        # output_ids = output.sequences
-        # scores = output.scores
-
-        # # 计算每个token的概率
-        # probabilities = []
-        # for i, score in enumerate(scores):
-        #     softmax_scores = torch.nn.functional.softmax(score, dim=-1)
-        #     probabilities.append(softmax_scores)
-
-        # 输出的token序列
         outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
-
-        
 
         ans_id = shortuuid.uuid()
         ans_file.write(json.dumps({"question_id": idx,

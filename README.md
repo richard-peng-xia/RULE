@@ -32,13 +32,25 @@ pip install trl
 
 ## Preparation
 - Download the model [llava-med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
-- Download the [data annotations](https://huggingface.co/datasets/zky11235/annotations). Put the folder under data/annotations.
-- Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after dpo training. Put the folder under checkpoints.
-<!-- ## Training -->
+- Download the [test data and annotations](https://huggingface.co/datasets/zky11235/test_data). Put the folder under `data/`.
+- Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after DPO training. Put the folder under `checkpoints/`.
+## Training
+- The training code of Direct Preference Optimization is at `llava/train/train_dpo.py`. 
+- The relevant script can be found at `scripts/run_dpo.sh`
 
 
-<!-- ## Inference -->
+## Inference
 
+- For test dataset inference, you need to specify the following arguments.
+```python
+python llava/eval/model_vqa_{dataset}.py \
+    --model-base 'path/to/llava-med-1.5' \
+    --model-path 'path/to/lora_weights' \
+    --question-file 'path/to/question_file.json' \
+    --image-folder 'path/to/test_images' \
+    --answers-file 'path/to/output_file.json'
+```
+- The written script is at `scripts/inference.sh`. Before that, you need to set the correct path of data and annotations in the script.
 
 ## Citation
 
