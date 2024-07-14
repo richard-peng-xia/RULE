@@ -50,7 +50,7 @@ python llava/eval/model_vqa_{dataset}.py \
     --image-folder 'path/to/test_images' \
     --answers-file 'path/to/output_file.json'
 ```
-- The written script is at `scripts/inference.sh`. Before that, you need to set the correct path of data and annotations in the script.
+- The written script is at `scripts/inference.sh`. Before that, you need to set the correct path of data and checkpoints in your script.
 
 ## Citation
 
