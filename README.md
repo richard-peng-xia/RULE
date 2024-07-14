@@ -10,7 +10,7 @@
 ## 🌟Requirements
 1. Clone this repository and navigate to RULE folder
 ```bash
-https://github.com/richard-peng-xia/RULE.git
+git clone https://github.com/richard-peng-xia/RULE.git
 cd RULE
 ```
 
@@ -25,7 +25,7 @@ pip install trl
 ```
 
 ## 📦Preparation
-- Download the model checkpoint [LLaVA-Med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
+- Download the model checkpoints [LLaVA-Med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
 - Download the [test data and annotations](https://huggingface.co/datasets/zky11235/test_data) under `data/`.
 - Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after DPO training under `checkpoints/`.
 
