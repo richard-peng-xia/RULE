@@ -1,6 +1,6 @@
 wandb
 data/*
-!data/annotations/.gitkeep
+!data/.gitkeep
 checkpoints/*
 !checkpoints/.gitkeep
 *.log
