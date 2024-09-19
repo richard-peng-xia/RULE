@@ -1,4 +1,4 @@
-# RULE: Reliable Multimodal RAG for Factuality in Medical Vision Language Models
+# [EMNLP'24] RULE: Reliable Multimodal RAG for Factuality in Medical Vision Language Models
 
 *We tackle the challenge of improving factual accuracy in Medical Large Vision Language Models (Med-LVLMs) using our novel approach, RULE. Despite their promise, Med-LVLMs often generate responses misaligned with established medical facts. RULE addresses this with two key strategies: 1) Calibrated selection of retrieved contexts to control factuality risk. 2) Fine-tuning models using a preference dataset to balance reliance on inherent knowledge and retrieved contexts. Our method achieves a 20.8% improvement in factual accuracy across three medical VQA datasets.*
 
