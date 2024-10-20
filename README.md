@@ -7,7 +7,7 @@
 <img src=asset/logo.png width=90% />
 </div>
 
-## 🌟Requirements
+## 🌟 Requirements
 1. Clone this repository and navigate to RULE folder
 ```bash
 git clone https://github.com/richard-peng-xia/RULE.git
@@ -24,17 +24,28 @@ pip install -e .
 pip install trl
 ```
 
-## 📦Preparation
-- Download the model checkpoints [LLaVA-Med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
-- Download the [test data and annotations](https://huggingface.co/datasets/zky11235/test_data) under `data/`.
-- Download the [model checkpoints](https://huggingface.co/zky11235/dpo_checkpoints) after DPO training under `checkpoints/`.
+3. Download the required model checkpoints [LLaVA-Med-1.5](https://huggingface.co/microsoft/llava-med-v1.5-mistral-7b) from huggingface.
 
-## 🚀Training
+4. For all the medical datasets, you need firstly apply for the right of access and then download the dataset.
+
+- [MIMIC-CXR](https://physionet.org/content/mimic-cxr-jpg/2.0.0/)
+- [IU-Xray](https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view) (Thanks to [R2GenGPT](https://github.com/wang-zhanyu/R2GenGPT) for sharing the file)
+- [Harvard-FairVLMed](https://ophai.hms.harvard.edu/datasets/harvard-fairvlmed10k/)
+
+## 📖 Data Description
+We provide a corresponding json or jsonl file for each dataset, including the image path, question, answer, and original report.
+
+- Training: The data used to train the retriever and fine-tune the Med-LVLM are located in `data/training/retriever` and `data/training/alignment` respectively. 
+
+- Test: All the test data for Med-LVLMs is placed under `data/test`. 
+
+## 🚀 Training
+
 - The training code of Direct Preference Optimization is at `llava/train/train_dpo.py`. 
 - The relevant script can be found at `scripts/run_dpo.sh`
 
 
-## 🛠️Inference
+## 🛠️ Inference
 
 - For test dataset inference, you need to specify the following arguments.
 ```python
@@ -47,7 +58,7 @@ python llava/eval/model_vqa_{dataset}.py \
 ```
 - The written script is at `scripts/inference.sh`. Before that, you need to set the correct path of data and checkpoints in your script.
 
-## 📚Citation
+## 📚 Citation
 
 ```bibtex
 @article{xia2024rule,
@@ -58,5 +69,5 @@ python llava/eval/model_vqa_{dataset}.py \
 }
 ```
 
-## 🙏Acknowledgement
+## 🙏 Acknowledgement
 We use code from [LLaVA-Med](https://github.com/microsoft/LLaVA-Med), [POVID](https://github.com/YiyangZhou/POVID), [CARES](https://github.com/richard-peng-xia/CARES). We thank the authors for releasing their code.
