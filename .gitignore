@@ -9,3 +9,6 @@ training/README.md
 llava.egg-info
 requirements.txt
 inference/*
+retrieve/open_clip
+
+backup

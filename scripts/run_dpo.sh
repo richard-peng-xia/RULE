@@ -1,18 +1,10 @@
-# cd ../training
-
-image_folder="/home/wenhao/Datasets/med/Harvard/Validation"
-
-data_path="data/annotations/dpo/harvard_dpo_data_qrefVqa.json"
-output_path='checkpoints/output/harvard_lora-qrefVqa'
-
-
 CUDA_VISIBLE_DEVICES='2,3' deepspeed --include localhost:0,1 llava/train/train_dpo.py \
-    --model_name_or_path /home/wenhao/Project/intern/xiapeng/rein/LLaVA-Med/checkpoint/llava-med-v1.5-mistral-7b  \
+    --model_name_or_path /path/to/llava-med-1.5/model  \
     --deepspeed ./scripts/zero3.json \
     --version v1 \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
-    --data_path $data_path \
-    --image_folder $image_folder  \
+    --data_path /path/to/json/data \
+    --image_folder /path/to/image/folder \
     --vision_tower openai/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
@@ -21,7 +13,7 @@ CUDA_VISIBLE_DEVICES='2,3' deepspeed --include localhost:0,1 llava/train/train_d
     --image_aspect_ratio pad \
     --group_by_modality_length True \
     --bf16 True \
-    --output_dir $output_path \
+    --output_dir /path/to/checkpoint/saving/location \
     --num_train_epochs 3 \
     --per_device_train_batch_size 1\
     --per_device_eval_batch_size 1 \
