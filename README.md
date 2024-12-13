@@ -45,6 +45,10 @@ We provide a corresponding json or jsonl file for each dataset, including the im
 - The relevant script can be found at `scripts/run_dpo.sh`
 
 
+## 🥖 Retrieve
+
+Use `retrieve_clip.sh` to retrieve reports for VQA task. The script uses Harvard-FairVLMed dataset as an example. Make sure to specify the necessary data paths and the saving location.
+
 ## 🛠️ Inference
 
 - For test dataset inference, you need to specify the following arguments.
